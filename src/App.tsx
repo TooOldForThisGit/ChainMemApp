@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+//test dnd
+import {DndContext, closestCorners} from "@dnd-kit/core"
+import { Column } from './components/Column/Column';
+
 function App() {
+
+  const [subjects, setSubjects] = useState([
+      {id:1, title: "A" },
+      {id:2, title: "B" },
+      {id:3, title: "C" },
+    ])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>
+          ChainMemApp
+        </h1>
       </header>
+    
+        <h2> Order</h2>
+        <DndContext collisionDetection={closestCorners}>
+          <Column subjects={subjects}/>
+        </DndContext>
+     
+      
     </div>
   );
 }
